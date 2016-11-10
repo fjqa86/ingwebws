@@ -51,9 +51,9 @@ public class DeviceWS {
 	@PUT
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
-	public String update(Device Device) {
+	public String update(Device device) {
 		try {
-			deviceBL.update(Device);
+			deviceBL.update(device);
 			return "Almacenado con èxito";
 		} catch (Exception e) {
 			throw new WSException(e.getMessage());
