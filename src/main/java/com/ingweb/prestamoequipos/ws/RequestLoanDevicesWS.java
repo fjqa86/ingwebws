@@ -24,7 +24,11 @@ public class RequestLoanDevicesWS {
 	@Autowired
 	private IRequestLoanDevicesBL requestLoanDevicesBL;
 	
-	
+	/**
+	 * Guarda una solicitud de dipositivo a prestar en la base de datos
+	 * @param requestLoanDevices  en formato json
+	 * @return mensaje status 200 o error con mensaje status 400 
+	 */
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
@@ -37,6 +41,10 @@ public class RequestLoanDevicesWS {
 		}
 	}
 	
+	/**
+	 * Lista solicitudes de dipositivo a prestar almacenados en la base de datos
+	 * @return listado solicitudes de dipositivo a prestar status 200 o error con mensaje status 400 
+	 */
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<RequestLoanDevices> pendingList() {
@@ -47,6 +55,11 @@ public class RequestLoanDevicesWS {
 		}
 	}
 	
+	
+	/**
+	 * Permite aceptar una solicitud de préstamo almacenada en la base de datos
+	 * @param requestLoanDevices
+	 */
 	@PUT
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)

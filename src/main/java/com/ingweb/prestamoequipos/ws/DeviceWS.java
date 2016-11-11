@@ -19,10 +19,12 @@ import com.ingweb.prestamoequipos.bl.IDevicesBL;
 import com.ingweb.prestamoequipos.exception.WSException;
 import com.ingweb.prestamoequipos.model.Device;
 
+
 /**
  * Clase para el manejo de peticiones rest para las equipos
- * @author javier.quintero@udea.edu.co
- *
+ * @author giovanny gomez @gio96gomez@gmail.com
+ *@author francisco quintero @javier.quintero@udea.edu.co
+ *@author juan david reyes @jdavid.reyes@udea.edu.co
  */
 @Component
 @Path("Device")

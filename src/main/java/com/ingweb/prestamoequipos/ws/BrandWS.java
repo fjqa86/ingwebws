@@ -19,10 +19,12 @@ import com.ingweb.prestamoequipos.bl.IBrandBL;
 import com.ingweb.prestamoequipos.exception.WSException;
 import com.ingweb.prestamoequipos.model.Brand;
 
+
 /**
  * Clase para el manejo de peticiones rest para las marcas
- * @author javier.quintero@udea.edu.co
- *
+ * @author giovanny gomez @gio96gomez@gmail.com
+ *@author francisco quintero @javier.quintero@udea.edu.co
+ *@author juan david reyes @jdavid.reyes@udea.edu.co
  */
 @Component
 @Path("brand")
@@ -81,6 +83,8 @@ public class BrandWS {
 			// TODO: handle exception
 		}
 	}
+	
+	
 
 	@DELETE
 	@Path("/{id}")

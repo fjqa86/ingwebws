@@ -17,10 +17,13 @@ import com.ingweb.prestamoequipos.bl.IUserBL;
 import com.ingweb.prestamoequipos.exception.WSException;
 import com.ingweb.prestamoequipos.model.User;
 
+
+
 /**
  * Clase para manejo de peticiones rest para usuario
- * @author javier.quintero@udea.edu.co
- *
+ * @author giovanny gomez @gio96gomez@gmail.com
+ *@author francisco quintero @javier.quintero@udea.edu.co
+ *@author juan david reyes @jdavid.reyes@udea.edu.co
  */
 @Component
 @Path("usuario")
