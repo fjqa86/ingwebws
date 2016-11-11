@@ -6,6 +6,7 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -39,9 +40,22 @@ public class RolWS {
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public void save(Rol rol){
+	public String save(Rol rol){
 		try{
 			rolBL.save(rol);
+			return "Almaceno con éxito";
+		}catch (Exception e) {
+			throw new WSException(e.getMessage());
+		}
+	}
+	
+	@PUT
+	@Produces(MediaType.TEXT_PLAIN)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public String update(Rol rol){
+		try{
+			rolBL.update(rol);
+			return "Actualizo con éxito";
 		}catch (Exception e) {
 			throw new WSException(e.getMessage());
 		}

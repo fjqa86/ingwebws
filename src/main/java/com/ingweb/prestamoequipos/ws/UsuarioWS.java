@@ -16,6 +16,12 @@ import org.springframework.stereotype.Component;
 import com.ingweb.prestamoequipos.bl.IUserBL;
 import com.ingweb.prestamoequipos.exception.WSException;
 import com.ingweb.prestamoequipos.model.User;
+
+/**
+ * Clase para manejo de peticiones rest para usuario
+ * @author javier.quintero@udea.edu.co
+ *
+ */
 @Component
 @Path("usuario")
 public class UsuarioWS {
@@ -23,14 +29,16 @@ public class UsuarioWS {
 	@Autowired
 		private IUserBL userBL;
 		
+	/**
+	 * Valida si un usuario es permitido para la aplicación
+	 * @param user idUser y password a validar
+	 * @return status 200 o error con mensaje status 400
+	 */
 		@POST
 		@Produces(MediaType.APPLICATION_JSON)
 		@Path("/login")
-		public boolean login(@QueryParam("user") String userId,@QueryParam("pass") String pass){
+		public boolean login(User user){
 			try{
-				User user = new User();
-				user.setIdUser(userId);
-				user.setPassword(pass);
 				if( userBL.login(user)){
 					return true;
 				}else{
@@ -41,6 +49,11 @@ public class UsuarioWS {
 			}
 		}
 		
+		/**
+		 * Alamcena un usuario nuevo en la base de datos
+		 * @param user usuario al macenar
+		 * return status 200 0 error con mensaje status 400
+		 */
 		@POST
 		@Produces(MediaType.APPLICATION_JSON)
 		@Path("/sigup")
@@ -53,12 +66,19 @@ public class UsuarioWS {
 			
 		}
 		
-		@GET
-		@Produces(MediaType.APPLICATION_JSON)
+		/**
+		 * Busca un correo en la base de datos, cambia la contraseña y envia un correo con el password nuevo.
+		 * @param user idUser correo electronico
+		 * @return mensaje status 200 o error con mensaje status 400
+		 */
+		@POST
+		@Produces(MediaType.TEXT_PLAIN)
+		@Consumes(MediaType.APPLICATION_JSON)
 		@Path("/lostpassword")
-		public void recuperarContrasena(User user){
+		public String recuperarContrasena(User user){
 			try{
 				userBL.lostPassword(user);
+				return "Hemos enviado un correo con tu nueva contraseña";
 			}catch (Exception e){
 				throw new WSException(e.getMessage());
 			}
@@ -66,7 +86,7 @@ public class UsuarioWS {
 		
 		@PUT
 		@Produces(MediaType.APPLICATION_JSON)
-		@Path("/changepassword")
+		@Path("/changepassword/")
 		public String cambiarContrasena(@QueryParam("iduser") String idUser,
 				@QueryParam("oldpass") String oldPassword,
 				@QueryParam("newpass") String newPassword){

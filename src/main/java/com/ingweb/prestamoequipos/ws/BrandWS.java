@@ -19,6 +19,11 @@ import com.ingweb.prestamoequipos.bl.IBrandBL;
 import com.ingweb.prestamoequipos.exception.WSException;
 import com.ingweb.prestamoequipos.model.Brand;
 
+/**
+ * Clase para el manejo de peticiones rest para las marcas
+ * @author javier.quintero@udea.edu.co
+ *
+ */
 @Component
 @Path("brand")
 public class BrandWS {
@@ -26,6 +31,11 @@ public class BrandWS {
 	@Autowired
 	private IBrandBL brandBL;
 
+	/**
+	 * Lista las marcas almacenadas en la base de datos
+	 * 
+	 * @return listado de marcas status 200 o error con mensaje status 400 
+	 */
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Brand> list() {
@@ -35,6 +45,12 @@ public class BrandWS {
 			throw new WSException(e.getMessage());
 		}
 	}
+	
+	/**
+	 * Guarda una marca en la base de datos
+	 * @param brand marca en formato json
+	 * @return mensaje status 200 o error con mensaje status 400 
+	 */
 
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -48,6 +64,11 @@ public class BrandWS {
 		}
 	}
 
+	/**
+	 * Actualiza una marca en la base de datos
+	 * @param brand marca en formato json
+	 * @return mensaje status 200 o error con mensaje status 400 
+	 */
 	@PUT
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
